@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StopWatch</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-image: linear-gradient(to right,
+          rgb(243, 253, 244),
+          rgb(0, 145, 255));
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: start;
+    }
+
+    h1 {
+      color: #1d1d1d;
+      text-transform: uppercase;
+      font-size: 10vw;
+      font-family: Georgia, "Times New Roman", Times, serif;
+    }
+
+    .container {
+      border: 2px solid white;
+      text-align: center;
+      padding: 3vw;
+      border-radius: 10px;
+      font-size: 3vw;
+      font-weight: 600;
+    }
+
+    span {
+      padding: 0.5vw;
+    }
+
+    .btn {
+      padding: 1vw 2vw;
+      background-color: #ffffff59;
+      border: none;
+      outline: none;
+
+      color: rgb(0, 0, 0);
+      font-weight: 600;
+      text-transform: uppercase;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #ffffffcd;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.237);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Stop Watch</h1>
+  <div class="container">
+    <p>
+      <span id="hours">00</span> <span id="minutes">00</span>
+      <span id="seconds">00</span> <span id="tens">00</span>
+    </p>
+    <button id="btn-start" class="btn">start</button>
+    <button id="btn-reset" class="btn">reset</button>
+    <button id="btn-stop" class="btn">stop</button>
+  </div>
+  <script>
+    /*
+    // Using Class OOP
+    class Stopwatch {
+
+      constructor() {
+
+        this.outputSeconds = document.querySelector("#seconds");
+        this.outputTens = document.querySelector("#tens");
+        this.outputhours = document.querySelector("#hours");
+        this.outputminutes = document.querySelector("#minutes");
+        this.buttonStart = document.querySelector("#btn-start");
+        this.buttonStop = document.querySelector("#btn-stop");
+        this.buttonReset = document.querySelector("#btn-reset");
+        this.Interval = null;
+
+        this.seconds = 0;
+        this.tens = 0;
+        this.minutes = 0;
+        this.hours = 0;
+        this.buttonStart.addEventListener("click",this.startTimer.bind(this));
+        this.buttonStop.addEventListener("click",this.stopTimer.bind(this));
+        this.buttonReset.addEventListener("click",this.resetTimer.bind(this));
+      }
+      startTimer() {
+        clearInterval(this.Interval);
+        this.Interval = setInterval(this.startTime.bind(this), 10);
+      }
+      stopTimer() {
+        clearInterval(this.Interval);
+      }
+      resetTimer() {
+        clearInterval(this.Interval);
+        this.tens = 0;
+        this.seconds = 0;
+        this.minutes = 0;
+        this.hours = 0;
+        this.outputSeconds.innerHTML = "00";
+        this.outputTens.innerHTML = "00";
+        this.outputMinutes.innerHTML = "00";
+        this.outputHours.innerHTML = "00";
+      }
+
+      startTime() {
+        this.tens++;
+        if (this.tens <= 9) {
+          this.outputTens.innerHTML = "0" + this.tens;
+        } else {
+          this.outputTens.innerHTML = this.tens;
+        }
+        if (this.tens > 99) {
+          this.tens = 0;
+          this.outputTens.innerHTML = "0" + this.tens;
+          this.seconds++;
+        }
+        if (this.seconds <= 9) {
+          this.outputSeconds.innerHTML = "0" + this.seconds;
+        } else {
+          this.outputSeconds.innerHTML = this.seconds;
+        }
+        if (this.seconds == 60) {
+          this.seconds = 0;
+          this.minutes++;
+        }
+        if (this.minutes <= 9) {
+          this.outputminutes.innerHTML = "0" + this.minutes;
+        } else {
+          this.outputminutes.innerHTML = this.minutes;
+        }
+        if (this.minutes == 60) {
+          this.minutes = 0;
+          this.hours++;
+        }
+        if (this.hours <= 9) {
+          this.outputhours.innerHTML = "0" + this.hours;
+        } else {
+          this.outputhours.innerHTML = this.hours;
+        }
+      }
+    }
+
+    const stopWatchActive = new Stopwatch();
+
+   */
+    var seconds = 0;
+    var tens = 0;
+    var minutes = 0;
+    var hours = 0;
+
+    var outputSeconds = document.querySelector("#seconds");
+    var outputTens = document.querySelector("#tens");
+    var outputhours = document.querySelector("#hours");
+    var outputminutes = document.querySelector("#minutes");
+    var buttonStart = document.querySelector("#btn-start");
+    var buttonStop = document.querySelector("#btn-stop");
+    var buttonReset = document.querySelector("#btn-reset");
+    var Interval;
+
+    buttonStart.addEventListener("click", () => {
+      clearInterval(Interval);
+      Interval = setInterval(startTime, 10);
+    });
+    buttonStop.addEventListener("click", () => {
+      clearInterval(Interval);
+    });
+    buttonReset.addEventListener("click", () => {
+      clearInterval(Interval);
+      tens = 0;
+      seconds = 0;
+      minutes = 0;
+      hours = 0;
+      outputSeconds.innerHTML = "00";
+      outputTens.innerHTML = "00";
+      outputMinutes.innerHTML = "00";
+      outputHours.innerHTML = "00";
+    });
+    function startTime() {
+      tens++;
+      if (tens <= 9) {
+        outputTens.innerHTML = "0" + tens;
+      } else {
+        outputTens.innerHTML = tens;
+      }
+      if (tens > 99) {
+        tens = 0;
+        outputTens.innerHTML = "0" + tens;
+        seconds++;
+      }
+      if (seconds <= 9) {
+        outputSeconds.innerHTML = "0" + seconds;
+      } else {
+        outputSeconds.innerHTML = seconds;
+      }
+      if (seconds == 60) {
+        seconds = 0;
+        minutes++;
+      }
+      if (minutes <= 9) {
+        outputminutes.innerHTML = "0" + minutes;
+      } else {
+        outputminutes.innerHTML = minutes;
+      }
+      if (minutes == 60) {
+        minutes = 0;
+        hours++;
+      }
+      if (hours <= 9) {
+        outputhours.innerHTML = "0" + hours;
+      } else {
+        outputhours.innerHTML = hours;
+      }
+    };
+  </script>
+</body>
+
+</html>
